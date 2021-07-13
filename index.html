@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- auto refresh, for dev purpose -->
+    <!-- <meta http-equiv="refresh" content="10"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- import model-viewer into this file -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    
+    <script type="module">
+        const modelViewer = document.querySelector("model-viewer");
+        //switchSrc function  
+        window.switchSrc = (element, name, backDrop) => {
+          const base = "assets/";
+          modelViewer.src = base + "glb/"+ name +".glb";
+          modelViewer.poster = base + "png/"+ name +".png";
+          const slides = document.querySelectorAll(".slide");
+          slides.forEach((element) => {element.classList.remove("selected");});
+
+          // dynamic background image, fetch from map folder
+          let backgroundImg ="url(" + base + "png/map/"+ backDrop +"/"+ backDrop+ "/"+ backDrop +"_02.png)";
+          console.log(backgroundImg);
+          document.getElementById('mv').style.backgroundImage=backgroundImg;
+
+          // fetch .txt file to the id="detail" div 
+          fetch(base+ "txt/" + name + ".txt")
+            .then(response => response.text())
+            .then(text => document.getElementById("detail").innerHTML = text)
+            // .then()
+          element.classList.add("selected");
+        };
+      
+        document.querySelector(".slider").addEventListener('beforexrselect', (ev) => {
+          // Keep slider interactions from affecting the XR scene.
+          ev.preventDefault();
+        });
+      </script>
+    <title>Document</title>
+
+    <style>
+        /* This keeps child nodes hidden while the element loads */
+        :not(:defined) > * {
+          display: none;
+        }
+      
+        model-viewer {
+          background-color: #eee;
+          overflow-x: hidden;
+          --poster-color: #eee;
+        }
+        body {
+          margin: 0; 
+          height: 90vh; 
+          overflow: hidden
+        }
+
+        svg{
+          font   : bold 70px Century Gothic, Arial;
+          width  : 100%;
+          height : 120px;
+        }
+        text {
+          fill: none;
+          stroke          : black;
+          stroke-width    : .5px;
+          stroke-linejoin : round;
+          animation       : 2s pulsate infinite;
+        }
+        @keyframes pulsate {
+          50%{ stroke-width:5px }
+        }
+
+      
+        #ar-button {
+          background-size: 30px 20px;
+          background-position: 12px 50%;
+          background-color: #fff;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          white-space: nowrap;
+          bottom: 152px;
+          padding: 0px 40px 0px 40px;
+          font-family: Roboto Regular, Helvetica Neue, sans-serif;
+          font-size: 14px;
+          color:#4285f4;
+          height: 36px;
+          line-height: 36px;
+          border-radius: 20px;
+          border: 1px solid #DADCE0;
+        }
+      
+        #ar-button:active {
+          background-color: #E8EAED;
+        }
+      
+        #ar-button:focus {
+          outline: none;
+        }
+      
+        #ar-button:focus-visible {
+          outline: 1px solid #4285f4;
+        }
+      
+        @keyframes circle {
+          from { transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg); }
+          to   { transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg); }
+        }
+      
+        @keyframes elongate {
+          from { transform: translateX(100px); }
+          to   { transform: translateX(-100px); }
+        }
+
+        model-viewer{
+            width: 100%;
+            height: 100vh;
+            margin: 0 auto;
+            /* background-color:grey; */
+            background-image: url("assets/png/map/春秋/春秋/春秋_02.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+      
+        model-viewer > #ar-prompt {
+          position: absolute;
+          left: 50%;
+          bottom: 175px;
+          animation: elongate 2s infinite ease-in-out alternate;
+          display: none;
+        }
+      
+        model-viewer[ar-status="session-started"] > #ar-prompt {
+          display: block;
+        }
+      
+        model-viewer > #ar-prompt > img {
+          animation: circle 4s linear infinite;
+        }
+      
+        model-viewer > #ar-failure {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          bottom: 175px;
+          display: none;
+        }
+      
+        model-viewer[ar-tracking="not-tracking"] > #ar-failure {
+          display: block;
+        }
+      
+        .slider {
+          width: 100%;
+          text-align: center;
+          overflow: hidden;
+          position: absolute;
+          bottom: 40px;
+        }
+      
+        .slides {
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          overflow-x: scroll;
+          overflow-y: hidden;
+          scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+        }
+      
+        .slide {
+          scroll-snap-align: start;
+          flex-shrink: 0;
+          width: 100px;
+          height: 100px;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-color: #fff;
+          margin-right: 10px;
+          border-radius: 10px;
+          border: none;
+          display: flex;
+        }
+      
+        .slide.selected {
+          border: 2px solid #4285f4;
+        }
+      
+        .slide:focus {
+          outline: none;
+        }
+      
+        .slide:focus-visible {
+          outline: 1px solid #4285f4;
+        }
+      
+      </style>
+</head>
+<!-- Model viwer template -->
+<body>
+  <!-- init model, change while switchSrc() is called -->
+    <model-viewer id="mv" src="assets/glb/布幣.glb" 
+        ar ar-modes="webxr scene-viewer quick-look"
+        pan-y pan-x
+        Max-field-of-view="50deg"
+        Min-field-of-view="50deg"
+        camera-orbit="180deg 1.5m"
+        camera-controls="" background-color="#455A64" alt="A 3D model carousel">
+        <div id="detail" style="height:69vh;
+                    width:240px;
+                    overflow:auto;
+                    float: right;
+                    font-size: 20px;
+                    background-color:rgb(61, 63, 58);
+                    color:white;
+                    scrollbar-base-color:gold;
+                    font-family:sans-serif;
+                    padding:50px 50px;">
+                   
+                   布幣是中國古代貨幣，因形狀似鏟，又稱鏟布，在中國春秋戰 國時曾是民間交易的媒介。「布」本有麻布之意，而麻布是交 易媒介之一，在銅幣出現後，人們因受長期習慣的影響，仍稱 銅錢為布。布幣是從青銅農具鎛演變而來的，布幣形狀劃分為 空首布，平首布兩大類。最初的布幣，保留著其作為工具的模 樣，留有裝柄的的銎，原始而厚重，故稱為空首布；後來逐漸 減輕，變薄，變小，幣身完全成為片狀，稱為平首布，平首布 上面通常鑄有地名或紀重的文字。後來王莽的新朝亦曾造布 幣。 Spade money was an ancient Chinese currency that was derived from the bronze agricultural tools and commonly circulated during the Spring and Autumn period. The earliest spade money retained the element of the hollowed handle of agricultural tools. It was thick and heavy. Later, it was redesigned and gradually became lightened, thinned and smaller.
+        </div>
+  <button slot="ar-button" id="ar-button">
+    View in AR mode
+  </button>
+  <!-- Sliding button list -->
+  <div class="slider">
+    <div class="slides">
+      <!-- App 1 -->
+      <button class="slide selected" onclick="switchSrc(this, '布幣', '春秋'); loadDoc()" style="background-image: url('assets/png/布幣.png');"> 
+        <svg viewBox="0 0 450 50">
+          <text y="50">1.布弊</text>
+        </svg>
+    </button>
+      <button class="slide" onclick="switchSrc(this, '劉邦', '西漢')" style="background-image: url('assets/png/劉邦.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">2.劉邦</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '刀幣', '戰國')" style="background-image: url('assets/png/刀幣.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">3.刀幣</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '秦皇劍', '秦')" style="background-image: url('assets/png/秦皇劍.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">4.秦皇劍</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '半兩錢', '戰國')" style="background-image: url('assets/png/半兩錢.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">5.半兩錢</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '圜錢', '戰國')" style="background-image: url('assets/png/圜錢.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">6.圜錢</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '李斯', '秦')" style="background-image: url('assets/png/李斯.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">7.李斯</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '漢武帝', '西漢')" style="background-image: url('assets/png/漢武帝.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">8.漢武帝</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '王莽', '西漢')" style="background-image: url('assets/png/王莽.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">9.王莽</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '蒙恬', '秦')" style="background-image: url('assets/png/蒙恬.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">10.蒙恬</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '蟻鼻錢', '戰國')" style="background-image: url('assets/png/蟻鼻錢.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">11.蟻鼻錢</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '韓信', '西漢')" style="background-image: url('assets/png/韓信.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">12.韓信</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '項伯', '西漢')" style="background-image: url('assets/png/項伯.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">13.項伯</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '項羽', '西漢')" style="background-image: url('assets/png/項羽.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">14.項羽</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '項莊', '西漢')" style="background-image: url('assets/png/項莊.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">15.項莊</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '秦始皇', '秦')" style="background-image: url('assets/png/秦始皇.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">16.秦始皇</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '荊軻', '秦')" style="background-image: url('assets/png/荊軻.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">17.荊軻</text>
+        </svg>
+      </button>
+      <!-- App 2 -->
+      <button class="slide" onclick="switchSrc(this, '劉福通', '元')" style="background-image: url('assets/png/劉福通.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">18.劉福通</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '岳飛', '南宋')" style="background-image: url('assets/png/岳飛.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">19.岳飛</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '忽必烈', '元')" style="background-image: url('assets/png/忽必烈.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">20.忽必烈</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '朱溫', '唐')" style="background-image: url('assets/png/朱溫.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">21.朱溫</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '李世民', '唐')" style="background-image: url('assets/png/李世民.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">22.李世民</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '李隆基', '唐')" style="background-image: url('assets/png/李隆基.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">23.李隆基</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '武則天', '唐')" style="background-image: url('assets/png/武則天.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">24.武則天</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '石守信', '北宋')" style="background-image: url('assets/png/石守信.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">25.石守信</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '趙匡胤', '北宋')" style="background-image: url('assets/png/趙匡胤.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">26.趙匡胤</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '鐵木真', '元')" style="background-image: url('assets/png/鐵木真.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">27.  鐵木真</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '韓山童', '元')" style="background-image: url('assets/png/韓山童.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">28.韓山童</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '高力士', '唐')" style="background-image: url('assets/png/高力士.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">29.高力士</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '乾隆', '清')" style="background-image: url('assets/png/乾隆.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">30.乾隆帝</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '吳三桂', '清')" style="background-image: url('assets/png/吳三桂.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">31.吳三桂</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '康熙', '清')" style="background-image: url('assets/png/康熙.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">32.康熙帝</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '慈禧太后', '清')" style="background-image: url('assets/png/慈禧太后.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">33.慈禧太后</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '朱元璋', '明')" style="background-image: url('assets/png/朱元璋.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">34.朱元璋</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '李自成', '明')" style="background-image: url('assets/png/李自成.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">35.李自成</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '林則徐', '清')" style="background-image: url('assets/png/林則徐.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">36.林則徐</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '義律', '清')" style="background-image: url('assets/png/義律.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">37.義律</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '鄭和', '明')" style="background-image: url('assets/png/鄭和.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">38.鄭和</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, '雍正', '清')" style="background-image: url('assets/png/雍正.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">39.雍正帝</text>
+        </svg>
+      </button>
+    </div>
+  </div>
+</model-viewer>
+</body>
+</html>
