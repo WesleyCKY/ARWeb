@@ -65,24 +65,24 @@
 				"profile-image": "assets/png/hanwudi.png",
 			},
 			{
-				"name": "13.王莽",
+				"name": "12.王莽",
 				"profile-image": "assets/png/wangmang.png",
 			},
 			{
-				"name": "14.韓信",
+				"name": "13.韓信",
 				"profile-image": "assets/png/hanxin.png",
 			},
 			{
-				"name": "11.劉邦",
-				"profile-image": "assets/png/hanwudi.png",
-			},
-			{
-				"name": "13.王莽",
+				"name": "14.項伯",
 				"profile-image": "assets/png/wangmang.png",
 			},
 			{
-				"name": "14.韓信",
+				"name": "15.項羽",
 				"profile-image": "assets/png/hanxin.png",
+			},
+			{
+				"name": "16.項莊",
+				"profile-image": "assets/png/wangmang.png",
 			},
 		],
 		"map-image": "" 
@@ -91,29 +91,27 @@
 		"dynasty": "tang",
 		"item": [
 			{
-				"name": "18.朱溫",
+				"name": "17.朱溫",
 				"profile-image": "assets/png/zhuwen.png",
 			},
 			{
-				"name": "19.李世民",
+				"name": "18.李世民",
 				"profile-image": "assets/png/lishimin.png",
 			},
 			{
-				"name": "20.李隆基",
+				"name": "19.李隆基",
 				"profile-image": "assets/png/lilongji.png",
 			},
 			{
-				"name": "21.武則天",
+				"name": "20.武則天",
 				"profile-image": "assets/png/wuzetian.png",
 			},
 			{
-				"name": "22.高力士",
+				"name": "21.高力士",
 				"profile-image": "assets/png/gaolishi.png",
 			},
-			{
-				"name": "23.石守信",
-				"profile-image": "assets/png/shishouxin.png",
-			},
+
+			
 		],
 		"map-image": "" 
 	},
@@ -121,16 +119,12 @@
 		"dynasty": "beisong",
 		"item": [
 			{
-				"name": "",
-				"profile-image": "",
+				"name": "22.石守信",
+				"profile-image": "assets/png/shishouxin.png",
 			},
 			{
-				"name": "",
-				"profile-image": "",
-			},
-			{
-				"name": "",
-				"profile-image": "",
+				"name": "23.趙匡胤",
+				"profile-image": "assets/png/zhaokuangyin.png",
 			},
 		],
 		"map-image": "" 
@@ -139,16 +133,8 @@
 		"dynasty": "nansong",
 		"item": [
 			{
-				"name": "",
-				"profile-image": "",
-			},
-			{
-				"name": "",
-				"profile-image": "",
-			},
-			{
-				"name": "",
-				"profile-image": "",
+				"name": "24.岳飛",
+				"profile-image": "aassets/png/yuefei.png",
 			},
 		],
 		"map-image": "" 
@@ -157,16 +143,20 @@
 		"dynasty": "yuan",
 		"item": [
 			{
-				"name": "",
-				"profile-image": "",
+				"name": "25.劉福通",
+				"profile-image": "assets/png/liufutong.png",
 			},
 			{
-				"name": "",
-				"profile-image": "",
+				"name": "26.忽必烈",
+				"profile-image": "assets/png/hubilie.png",
 			},
 			{
-				"name": "",
-				"profile-image": "",
+				"name": "27.鐵木真",
+				"profile-image": "assets/png/tiemuzhen.png",
+			},
+			{
+				"name": "28.韓山童",
+				"profile-image": "assets/png/hanshantong.png",
 			},
 		],
 		"map-image": "" 
@@ -175,16 +165,12 @@
 		"dynasty": "ming",
 		"item": [
 			{
-				"name": "",
-				"profile-image": "",
+				"name": "29.朱元璋",
+				"profile-image": "assets/png/zhuyuanzhang.png",
 			},
 			{
-				"name": "",
-				"profile-image": "",
-			},
-			{
-				"name": "",
-				"profile-image": "",
+				"name": "30.李自成",
+				"profile-image": "assets/png/lizicheng.png",
 			},
 		],
 		"map-image": "" 
@@ -193,16 +179,37 @@
 		"dynasty": "qing",
 		"item": [
 			{
-				"name": "",
-				"profile-image": "",
+				"name": "31.乾隆帝",
+				"profile-image": "assets/png/qianlong.png",
 			},
 			{
-				"name": "",
-				"profile-image": "",
+				"name": "32.吳三桂",
+				"profile-image": "assets/png/wusangui.png",
 			},
 			{
-				"name": "",
-				"profile-image": "",
+				"name": "33.康熙帝",
+				"profile-image": "assets/png/kangxi.png",
+			},
+			{
+
+				"name": "34.慈禧太后",
+				"profile-image": "assets/png/cixitaihou.png",
+			},
+			{
+				"name": "35.鄭和",
+				"profile-image": "assets/png/zhenghe.png",
+			},
+			{
+				"name": "36.林則徐",
+				"profile-image": "assets/png/linzexu.png",
+			},
+			{
+				"name": "37.義律",
+				"profile-image": "assets/png/yijin.png",
+			},
+			{
+				"name": "38.雍正帝",
+				"profile-image": "assets/png/yongzheng.png",
 			},
 		],
 		"map-image": "" 
