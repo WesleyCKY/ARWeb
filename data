@@ -1,0 +1,210 @@
+[
+	{
+		"dynasty": "chunqiu",
+		"item": [
+			{
+				"name": "1.布幣",
+				"profile-image": "assets/png/bucoin.png",
+			},
+		],
+		"map-image": "" 
+	},
+	{
+		"dynasty": "zhanguo",
+		"item": [
+			{
+				"name": "2.刀幣",
+				"profile-image": "assets/png/daobi.png",
+			},
+			{
+				"name": "3.半兩錢",
+				"profile-image": "assets/png/banliangqian.png",
+			},
+			{
+				"name": "4.圜錢",
+				"profile-image": "assets/png/huanqian.png",
+			},
+			{
+				"name": "5.蟻鼻錢",
+				"profile-image": "assets/png/yibiqian.png",
+			},
+		],
+		"map-image": "" 
+	},
+	{
+		"dynasty": "qin",
+		"item": [
+			{
+				"name": "6.秦皇劍",
+				"profile-image": "assets/png/qinhuangjian.png",
+			},
+			{
+				"name": "7.李斯",
+				"profile-image": "assets/png/lisi.png",
+			},
+			{
+				"name": "8.蒙恬",
+				"profile-image": "assets/png/mengtian.png",
+			},
+			{
+				"name": "9.秦始皇",
+				"profile-image": "assets/png/qinshihuang.png",
+			},
+			{
+				"name": "10.荊軻",
+				"profile-image": "assets/png/jinke.png",
+			},
+		],
+		"map-image": "" 
+	},
+	{
+		"dynasty": "xihan",
+		"item": [
+			{
+				"name": "11.劉邦",
+				"profile-image": "assets/png/hanwudi.png",
+			},
+			{
+				"name": "13.王莽",
+				"profile-image": "assets/png/wangmang.png",
+			},
+			{
+				"name": "14.韓信",
+				"profile-image": "assets/png/hanxin.png",
+			},
+			{
+				"name": "11.劉邦",
+				"profile-image": "assets/png/hanwudi.png",
+			},
+			{
+				"name": "13.王莽",
+				"profile-image": "assets/png/wangmang.png",
+			},
+			{
+				"name": "14.韓信",
+				"profile-image": "assets/png/hanxin.png",
+			},
+		],
+		"map-image": "" 
+	},
+	{
+		"dynasty": "tang",
+		"item": [
+			{
+				"name": "18.朱溫",
+				"profile-image": "assets/png/zhuwen.png",
+			},
+			{
+				"name": "19.李世民",
+				"profile-image": "assets/png/lishimin.png",
+			},
+			{
+				"name": "20.李隆基",
+				"profile-image": "assets/png/lilongji.png",
+			},
+			{
+				"name": "21.武則天",
+				"profile-image": "assets/png/wuzetian.png",
+			},
+			{
+				"name": "22.高力士",
+				"profile-image": "assets/png/gaolishi.png",
+			},
+			{
+				"name": "23.石守信",
+				"profile-image": "assets/png/shishouxin.png",
+			},
+		],
+		"map-image": "" 
+	},
+	{
+		"dynasty": "beisong",
+		"item": [
+			{
+				"name": "",
+				"profile-image": "",
+			},
+			{
+				"name": "",
+				"profile-image": "",
+			},
+			{
+				"name": "",
+				"profile-image": "",
+			},
+		],
+		"map-image": "" 
+	},
+	{
+		"dynasty": "nansong",
+		"item": [
+			{
+				"name": "",
+				"profile-image": "",
+			},
+			{
+				"name": "",
+				"profile-image": "",
+			},
+			{
+				"name": "",
+				"profile-image": "",
+			},
+		],
+		"map-image": "" 
+	},
+	{
+		"dynasty": "yuan",
+		"item": [
+			{
+				"name": "",
+				"profile-image": "",
+			},
+			{
+				"name": "",
+				"profile-image": "",
+			},
+			{
+				"name": "",
+				"profile-image": "",
+			},
+		],
+		"map-image": "" 
+	},
+	{
+		"dynasty": "ming",
+		"item": [
+			{
+				"name": "",
+				"profile-image": "",
+			},
+			{
+				"name": "",
+				"profile-image": "",
+			},
+			{
+				"name": "",
+				"profile-image": "",
+			},
+		],
+		"map-image": "" 
+	},
+	{
+		"dynasty": "qing",
+		"item": [
+			{
+				"name": "",
+				"profile-image": "",
+			},
+			{
+				"name": "",
+				"profile-image": "",
+			},
+			{
+				"name": "",
+				"profile-image": "",
+			},
+		],
+		"map-image": "" 
+	},
+]
