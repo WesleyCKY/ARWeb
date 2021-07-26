@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- auto refresh, for dev purpose -->
+    <!-- <meta http-equiv="refresh" content="10"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- import model-viewer into this file -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    
+    <script type="module">
+        const modelViewer = document.querySelector("model-viewer");
+        //switchSrc function  
+        window.switchSrc = (element, name, backDrop) => {
+          const base = "assets/";
+          modelViewer.src = base + "glb/"+ name +".glb";
+          modelViewer.poster = base + "png/"+ name +".png";
+          const slides = document.querySelectorAll(".slide");
+          slides.forEach((element) => {element.classList.remove("selected");});
+
+          // dynamic background image, fetch from map folder
+          let backgroundImg ="url(" + base + "png/map/"+ backDrop +"/"+ backDrop+ "/"+ backDrop +"_02.png)";
+          console.log(backgroundImg);
+          document.getElementById('mv').style.backgroundImage=backgroundImg;
+
+          // fetch .txt file to the id="detail" div 
+          fetch(base+ "txt/" + name + ".txt")
+            .then(response => response.text())
+            .then(text => document.getElementById("detail").innerHTML = text)
+            // .then()
+          element.classList.add("selected");
+        };
+      
+        document.querySelector(".slider").addEventListener('beforexrselect', (ev) => {
+          // Keep slider interactions from affecting the XR scene.
+          ev.preventDefault();
+        });
+      </script>
+    <title>西漢</title>
+
+    <style>
+        /* This keeps child nodes hidden while the element loads */
+        :not(:defined) > * {
+          display: none;
+        }
+      
+        model-viewer {
+          background-color: #eee;
+          overflow-x: hidden;
+          --poster-color: #eee;
+        }
+        body {
+          margin: 0; 
+          height: 90vh; 
+          overflow: hidden
+        }
+
+        svg{
+          font   : bold 70px Century Gothic, Arial;
+          width  : 100%;
+          height : 120px;
+        }
+        text {
+          fill: none;
+          stroke          : black;
+          stroke-width    : .5px;
+          stroke-linejoin : round;
+          animation       : 2s pulsate infinite;
+        }
+        @keyframes pulsate {
+          50%{ stroke-width:5px }
+        }
+
+      
+        #ar-button {
+          background-size: 30px 20px;
+          background-position: 12px 50%;
+          background-color: #fff;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          white-space: nowrap;
+          bottom: 152px;
+          padding: 0px 40px 0px 40px;
+          font-family: Roboto Regular, Helvetica Neue, sans-serif;
+          font-size: 14px;
+          color:#4285f4;
+          height: 36px;
+          line-height: 36px;
+          border-radius: 20px;
+          border: 1px solid #DADCE0;
+        }
+      
+        #ar-button:active {
+          background-color: #E8EAED;
+        }
+      
+        #ar-button:focus {
+          outline: none;
+        }
+      
+        #ar-button:focus-visible {
+          outline: 1px solid #4285f4;
+        }
+      
+        @keyframes circle {
+          from { transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg); }
+          to   { transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg); }
+        }
+      
+        @keyframes elongate {
+          from { transform: translateX(100px); }
+          to   { transform: translateX(-100px); }
+        }
+
+        model-viewer{
+            width: 100%;
+            height: 100vh;
+            margin: 0 auto;
+            /* background-color:grey; */
+            background-image: url("assets/png/map/xihan/xihan/xihan_02.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+      
+        model-viewer > #ar-prompt {
+          position: absolute;
+          left: 50%;
+          bottom: 175px;
+          animation: elongate 2s infinite ease-in-out alternate;
+          display: none;
+        }
+      
+        model-viewer[ar-status="session-started"] > #ar-prompt {
+          display: block;
+        }
+      
+        model-viewer > #ar-prompt > img {
+          animation: circle 4s linear infinite;
+        }
+      
+        .slider {
+          width: 100%;
+          text-align: center;
+          overflow: hidden;
+          position: absolute;
+          bottom: 8.5vh;
+        }
+      
+        .slides {
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          overflow-x: scroll;
+          overflow-y: hidden;
+          scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+        }
+      
+        .slide {
+          scroll-snap-align: start;
+          flex-shrink: 0;
+          width: 10vh;
+          height: 10vh;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-color: #fff;
+          margin-right: 10px;
+          border-radius: 10px;
+          border: none;
+          display: flex;
+        }
+      
+        .slide.selected {
+          border: 5px solid #f50f0f;
+        }
+      
+        .slide:focus {
+          outline: none;
+        }
+      
+        .slide:focus-visible {
+          outline: 1px solid #4285f4;
+        }
+      
+      </style>
+</head>
+<!-- Model viwer template -->
+<body>
+  <!-- init model, change while switchSrc() is called --> 
+    <model-viewer id="mv" src="assets/glb/liubang.glb" 
+        ar ar-modes="webxr scene-viewer quick-look"
+        pan-y pan-x
+        Max-field-of-view="50deg"
+        Min-field-of-view="50deg"
+        camera-orbit="180deg 1.5m"
+        camera-controls="" background-color="#455A64" alt="A 3D model carousel">
+        <div id="detail" style="height:69vh;
+                    width:23vw;
+                    overflow:auto;
+                    float: right;
+                    font-size: 20px;
+                    font-size: 2.3vw;
+                    background-color:rgb(61, 63, 58);
+                    color:white;
+                    scrollbar-base-color:gold;
+                    font-family:sans-serif;
+                    padding:50px 50px;">
+                   
+                   劉邦（公元前 256 年十一月二十四-前 195 年四月二十五），漢太祖高皇帝，沛豐邑中陽里人。出身農家的劉邦在陳勝起事後不久，便集合三千子弟響應起義，秦王子嬰投降，秦朝滅亡。 後來在楚漢戰爭中，劉邦屢敗，但他懂得充分發揮部下的才 能，最終反敗為勝。劉邦稱帝，定都長安，史稱「西漢」。登 基後一面消滅韓信，彭越等異姓諸侯王，一面採用休養生息的 寬鬆政策治理天下，恢復殘破的社會經濟，穩定封建統治秩 序。劉邦更對匈奴採取和親政策，緩和了雙方的關係。 LIU Bang (256 to 195 BCE) was also known as the Emperor Gaozu of Han. Shortly after the Uprising of CHEN Sheng and WU Guang, he assembled 3,000 followers to initiate another rebellion against the Qin empire. In the following Chu-Han Contention, Liu kept losing to XIANG Yu at the beginning, but he made good use of his soldiers‘ talents and turned the tables on XIANG Yu at the end. Liu became the emperor and set the capital in Chang’an. After the establishment of the “Western Han”, he eliminated all the vassal kings who had no relation to the imperial clan. At the same time, he ruled the state with lenient policies and stabilised the feudal system. Liu also adopted the policy of heqin towards the Xiongnu.
+        </div>
+  <button slot="ar-button" id="ar-button">
+    View in AR mode
+  </button>
+  <!-- Sliding button list -->
+  <div class="slider">
+    <div class="slides">
+      <!-- App 1 -->
+     
+      <button class="slide" onclick="switchSrc(this, 'liubang', 'xihan')" style="background-image: url('assets/png/liubang.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">11.劉邦</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, 'wangmang', 'xihan')" style="background-image: url('assets/png/wangmang.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">12.王莽</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, 'hanxin', 'xihan')" style="background-image: url('assets/png/hanxin.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">13.韓信</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, 'xiangbo', 'xihan')" style="background-image: url('assets/png/xiangbo.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">14.項伯</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, 'xiangyu', 'xihan')" style="background-image: url('assets/png/xiangyu.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">15.項羽</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, 'xiangzhuang', 'xihan')" style="background-image: url('assets/png/xiangzhuang.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">16.項莊</text>
+        </svg>
+      </button>
+    </div>
+  </div>
+</model-viewer>
+</body>
+</html>

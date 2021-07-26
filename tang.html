@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- auto refresh, for dev purpose -->
+    <!-- <meta http-equiv="refresh" content="10"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- import model-viewer into this file -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    
+    <script type="module">
+        const modelViewer = document.querySelector("model-viewer");
+        //switchSrc function  
+        window.switchSrc = (element, name, backDrop) => {
+          const base = "assets/";
+          modelViewer.src = base + "glb/"+ name +".glb";
+          modelViewer.poster = base + "png/"+ name +".png";
+          const slides = document.querySelectorAll(".slide");
+          slides.forEach((element) => {element.classList.remove("selected");});
+
+          // dynamic background image, fetch from map folder
+          let backgroundImg ="url(" + base + "png/map/"+ backDrop +"/"+ backDrop+ "/"+ backDrop +"_02.png)";
+          console.log(backgroundImg);
+          document.getElementById('mv').style.backgroundImage=backgroundImg;
+
+          // fetch .txt file to the id="detail" div 
+          fetch(base+ "txt/" + name + ".txt")
+            .then(response => response.text())
+            .then(text => document.getElementById("detail").innerHTML = text)
+            // .then()
+          element.classList.add("selected");
+        };
+      
+        document.querySelector(".slider").addEventListener('beforexrselect', (ev) => {
+          // Keep slider interactions from affecting the XR scene.
+          ev.preventDefault();
+        });
+      </script>
+    <title>唐代</title>
+
+    <style>
+        /* This keeps child nodes hidden while the element loads */
+        :not(:defined) > * {
+          display: none;
+        }
+      
+        model-viewer {
+          background-color: #eee;
+          overflow-x: hidden;
+          --poster-color: #eee;
+        }
+        body {
+          margin: 0; 
+          height: 90vh; 
+          overflow: hidden
+        }
+
+        svg{
+          font   : bold 70px Century Gothic, Arial;
+          width  : 100%;
+          height : 120px;
+        }
+        text {
+          fill: none;
+          stroke          : black;
+          stroke-width    : .5px;
+          stroke-linejoin : round;
+          animation       : 2s pulsate infinite;
+        }
+        @keyframes pulsate {
+          50%{ stroke-width:5px }
+        }
+
+      
+        #ar-button {
+          background-size: 30px 20px;
+          background-position: 12px 50%;
+          background-color: #fff;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          white-space: nowrap;
+          bottom: 152px;
+          padding: 0px 40px 0px 40px;
+          font-family: Roboto Regular, Helvetica Neue, sans-serif;
+          font-size: 14px;
+          color:#4285f4;
+          height: 36px;
+          line-height: 36px;
+          border-radius: 20px;
+          border: 1px solid #DADCE0;
+        }
+      
+        #ar-button:active {
+          background-color: #E8EAED;
+        }
+      
+        #ar-button:focus {
+          outline: none;
+        }
+      
+        #ar-button:focus-visible {
+          outline: 1px solid #4285f4;
+        }
+      
+        @keyframes circle {
+          from { transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg); }
+          to   { transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg); }
+        }
+      
+        @keyframes elongate {
+          from { transform: translateX(100px); }
+          to   { transform: translateX(-100px); }
+        }
+
+        model-viewer{
+            width: 100%;
+            height: 100vh;
+            margin: 0 auto;
+            /* background-color:grey; */
+            background-image: url("assets/png/map/tang/tang/tang_02.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+      
+        model-viewer > #ar-prompt {
+          position: absolute;
+          left: 50%;
+          bottom: 175px;
+          animation: elongate 2s infinite ease-in-out alternate;
+          display: none;
+        }
+      
+        model-viewer[ar-status="session-started"] > #ar-prompt {
+          display: block;
+        }
+      
+        model-viewer > #ar-prompt > img {
+          animation: circle 4s linear infinite;
+        }
+      
+        .slider {
+          width: 100%;
+          text-align: center;
+          overflow: hidden;
+          position: absolute;
+          bottom: 8.5vh;
+        }
+      
+        .slides {
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          overflow-x: scroll;
+          overflow-y: hidden;
+          scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+        }
+      
+        .slide {
+          scroll-snap-align: start;
+          flex-shrink: 0;
+          width: 10vh;
+          height: 10vh;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-color: #fff;
+          margin-right: 10px;
+          border-radius: 10px;
+          border: none;
+          display: flex;
+        }
+      
+        .slide.selected {
+          border: 5px solid #f50f0f;
+        }
+      
+        .slide:focus {
+          outline: none;
+        }
+      
+        .slide:focus-visible {
+          outline: 1px solid #4285f4;
+        }
+      
+      </style>
+</head>
+<!-- Model viwer template -->
+<body>
+  <!-- init model, change while switchSrc() is called -->
+    <model-viewer id="mv" src="assets/glb/zhuwen.glb" 
+        ar ar-modes="webxr scene-viewer quick-look"
+        pan-y pan-x
+        Max-field-of-view="50deg"
+        Min-field-of-view="50deg"
+        camera-orbit="180deg 1.5m"
+        camera-controls="" background-color="#455A64" alt="A 3D model carousel">
+        <div id="detail" style="height:69vh;
+                    width:23vw;
+                    overflow:auto;
+                    float: right;
+                    font-size: 20px;
+                    font-size: 2.3vw;
+                    background-color:rgb(61, 63, 58);
+                    color:white;
+                    scrollbar-base-color:gold;
+                    font-family:sans-serif;
+                    padding:50px 50px;">
+                   
+                   
+朱溫（852 年 12 月 9 日—912 年 7 月 18 日），五代時期梁朝第 一位皇帝 , 別名朱全忠，漢族。朱溫年幼喪父，年少時游手好 閒、不務正業，但後來加入黃巢軍，並在叛變降唐後，被授以 宣武節度使。其後，在平定黃巢後，朱溫被封為東平王。在黃 巢覆亡後，各藩鎮擁兵自重，朱溫是數個强大勢力中的其中一 個。不久後朱溫指使朱友恭等人殺昭宗, 另立唐哀帝，更盡殺宰 相。在除去阻力後，於開平元年，廢唐哀帝，自行稱帝，改名 為晃，國號為「梁」（後梁），自此中國進入五代十國的紛亂 時期。 ZHU Wen (852 to 912 CE), also named Zhu Quan-zhong, was the first emperor of the Liang Dynasty in the Five Dynasties period. He joined the rebel army of HUANG Chao against the state of Tang when he was young. However, he surrendered to the Tang’s army and was appointed to be a regional commander of Tang’s army in reward. After the fall of HUANG Chao, Zhu became one of several powerful military forces. Later, he instructed ZHU You-gong and the others to kill the Emperor Zhaozong. He passed the throne to Emperor Ai and eliminated all the Tang’s prime ministers. In the first year of the Kaiping era, he declared himself the Emperor and founded the Liang Dynasty or Later Liang.
+        </div>
+  <button slot="ar-button" id="ar-button">
+    View in AR mode
+  </button>
+  <!-- Sliding button list -->
+  <div class="slider">
+    <div class="slides">
+      <!-- App 1 -->
+      
+      <button class="slide" onclick="switchSrc(this, 'zhuwen', 'tang')" style="background-image: url('assets/png/zhuwen.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">17.朱溫</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, 'lishimin', 'tang')" style="background-image: url('assets/png/lishimin.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">18.李世民</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, 'lilongji', 'tang')" style="background-image: url('assets/png/lilongji.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">19.李隆基</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, 'wuzetian', 'tang')" style="background-image: url('assets/png/wuzetian.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">20.武則天</text>
+        </svg>
+      </button>
+      <button class="slide" onclick="switchSrc(this, 'gaolishi', 'tang')" style="background-image: url('assets/png/gaolishi.png');">
+        <svg viewBox="0 0 450 50">
+          <text y="50">21.高力士</text>
+        </svg>
+      </button>
+    </div>
+  </div>
+</model-viewer>
+</body>
+</html>
