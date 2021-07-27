@@ -21,14 +21,45 @@
 
           // dynamic background image, fetch from map folder
           let backgroundImg ="url(" + base + "png/map/"+ backDrop +"/"+ backDrop+ "/"+ backDrop +"_02.png)";
-          console.log(backgroundImg);
+          // console.log(backgroundImg);
           document.getElementById('mv').style.backgroundImage=backgroundImg;
 
-          // fetch .txt file to the id="detail" div 
+          var textTemp = '';
+           // fetch .txt file to the id="detail" div 
           fetch(base+ "txt/" + name + ".txt")
             .then(response => response.text())
-            .then(text => document.getElementById("detail").innerHTML = text)
-            // .then()
+          // .then(text => document.getElementById("detail").innerHTML = text) 
+            .then((text) => {
+              var i;
+              var NumOfChinese = 0;
+              var lastChar = 0;
+              // console.log("Text length", text.length);
+
+              //get where is the end of chinese word
+              for (i = 0; i < text.length-1; i++) { 
+                if (text[i].match("[\u4E00-\u9FA5]+")) {
+                  NumOfChinese += 1;
+                }
+              }
+              // console.log("Num of Chinese Char: ",NumOfChinese);
+
+              // loop through all the words and remove all the space
+              for (var j = 0; j < text.length; j++) {
+                  // In range of Chinese words
+                  if (j < NumOfChinese && text[j].match(' '||'/s'||'/S')) {
+                      // console.log("eliminated word:",text[j]);
+                      // textTemp += 'X';
+                      // console.log(j);
+                      continue;
+                  }
+                  
+                  // console.log("Eng zone");
+                  textTemp += text[j];
+              }
+              // console.log(textTemp);
+              document.getElementById("detail").innerHTML = textTemp;
+            })
+            
           element.classList.add("selected");
         };
       
@@ -206,8 +237,8 @@
                     background-color:rgb(61, 63, 58);
                     color:white;
                     scrollbar-base-color:gold;
-                    font-family:sans-serif;
-                    padding:50px 50px;">
+                    font-family:serif;
+                    padding:40px 40px;">
                    
                    岳飛（1103 年 3 月 24 日－1142 年 1 月 27 日），宋相州湯陰 人，北宋末、南宋初抗金名將，漢族。岳飛於北宋末年投軍， 率領岳家軍與金軍進行過數百次大小戰鬥。後來岳飛揮師北 伐，先後收復鄭州、洛城等地，又於郾城、潁昌大敗金軍，進 軍朱仙鎮。宋高宗卻一意求和，以十二道「金字牌」下令退 兵，岳飛在孤立無援之下被迫班師。在紹興和議過程中，岳飛 遭受秦檜、張俊等人的誣陷，被捕入獄。隨後，岳飛以「莫須 有」的「謀反」罪名，迫令自害，其長子岳雲和部將張憲皆被 害。宋孝宗即位後被平反，改葬於西湖畔棲霞嶺。 YUE Fei (1103 to 1142 CE) was a famous pro-Song general who fought against the state of Jin between the late Northern Song Dynasty and early Southern Song Dynasty. He led the Yue Family Army to fight against Jin’s army for hundreds of battles. Right after the victories in the North expedition and Zhuxian Town, Emperor Gaozong of Song recalled Yue back by sending him “12 Golden Edict”. During the Treaty of Shaoxing, Yue Fei was framed up by QIN Hui and the others. Eventually, Yue was falsely accused of betraying the dynasty and put to death.
         </div>

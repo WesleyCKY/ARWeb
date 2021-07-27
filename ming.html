@@ -21,14 +21,45 @@
 
           // dynamic background image, fetch from map folder
           let backgroundImg ="url(" + base + "png/map/"+ backDrop +"/"+ backDrop+ "/"+ backDrop +"_02.png)";
-          console.log(backgroundImg);
+          // console.log(backgroundImg);
           document.getElementById('mv').style.backgroundImage=backgroundImg;
 
+          var textTemp = '';
           // fetch .txt file to the id="detail" div 
           fetch(base+ "txt/" + name + ".txt")
             .then(response => response.text())
-            .then(text => document.getElementById("detail").innerHTML = text)
-            // .then()
+          // .then(text => document.getElementById("detail").innerHTML = text) 
+            .then((text) => {
+              var i;
+              var NumOfChinese = 0;
+              var lastChar = 0;
+              // console.log("Text length", text.length);
+
+              //get where is the end of chinese word
+              for (i = 0; i < text.length-1; i++) { 
+                if (text[i].match("[\u4E00-\u9FA5]+")) {
+                  NumOfChinese += 1;
+                }
+              }
+              // console.log("Num of Chinese Char: ",NumOfChinese);
+
+              // loop through all the words and remove all the space
+              for (var j = 0; j < text.length; j++) {
+                  // In range of Chinese words
+                  if (j < NumOfChinese && text[j].match(' '||'/s'||'/S')) {
+                      // console.log("eliminated word:",text[j]);
+                      // textTemp += 'X';
+                      // console.log(j);
+                      continue;
+                  }
+                  
+                  // console.log("Eng zone");
+                  textTemp += text[j];
+              }
+              // console.log(textTemp);
+              document.getElementById("detail").innerHTML = textTemp;
+            })
+            
           element.classList.add("selected");
         };
       
@@ -206,8 +237,8 @@
                     background-color:rgb(61, 63, 58);
                     color:white;
                     scrollbar-base-color:gold;
-                    font-family:sans-serif;
-                    padding:50px 50px;">
+                    font-family:serif;
+                    padding:40px 40px;">
                    
                    朱元璋（1328 年 10 月 21 日－1398 年 6 月 24 日）字國瑞，漢 族，明朝開國皇帝，本名「朱重八」。出身寒微,先為牧羊童,又 曾在皇覺寺做和尚討飯,其後投身反元,經十餘年的奮鬥終能定鼎 天下,建立明朝。朱元璋因見證元末即治腐敗，令他痛恨貪官污 即,嚴懲貪污;關心民生。他亦是在出身寒微下稱帝 ，加上他是 經過多年的奮鬥才登基，因此性格猜疑防範。除子孫外,不拘何 人,一律猜忌和不能容忍,更欲專制統治。唯有厲行集權政策,事 必躬親,由皇帝總理國政。 ZHU Yuan-zhang (1328 to 1398 CE), whose birth name was Zhu Zhong-ba, was the founding emperor of the Ming Dynasty. He was born in a poor family and begged for food as a monk. He devoted himself to a rebel army against the Yuan Dynasty until the establishment of the Ming Dynasty. Due to his poor background, he was a suspicious person and overprotective to himself. Apart from his children or grandchildren, no matter who they were, Zhu always questioned and was intolerable to them. He also centralised and managed all the state affairs himself.
         </div>

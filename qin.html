@@ -21,14 +21,45 @@
 
           // dynamic background image, fetch from map folder
           let backgroundImg ="url(" + base + "png/map/"+ backDrop +"/"+ backDrop+ "/"+ backDrop +"_02.png)";
-          console.log(backgroundImg);
+          // console.log(backgroundImg);
           document.getElementById('mv').style.backgroundImage=backgroundImg;
 
+          var textTemp = '';
           // fetch .txt file to the id="detail" div 
           fetch(base+ "txt/" + name + ".txt")
             .then(response => response.text())
-            .then(text => document.getElementById("detail").innerHTML = text)
-            // .then()
+          // .then(text => document.getElementById("detail").innerHTML = text) 
+            .then((text) => {
+              var i;
+              var NumOfChinese = 0;
+              var lastChar = 0;
+              // console.log("Text length", text.length);
+
+              //get where is the end of chinese word
+              for (i = 0; i < text.length-1; i++) { 
+                if (text[i].match("[\u4E00-\u9FA5]+")) {
+                  NumOfChinese += 1;
+                }
+              }
+              // console.log("Num of Chinese Char: ",NumOfChinese);
+
+              // loop through all the words and remove all the space
+              for (var j = 0; j < text.length; j++) {
+                  // In range of Chinese words
+                  if (j < NumOfChinese && text[j].match(' '||'/s'||'/S')) {
+                      // console.log("eliminated word:",text[j]);
+                      // textTemp += 'X';
+                      // console.log(j);
+                      continue;
+                  }
+                  
+                  // console.log("Eng zone");
+                  textTemp += text[j];
+              }
+              // console.log(textTemp);
+              document.getElementById("detail").innerHTML = textTemp;
+            })
+            
           element.classList.add("selected");
         };
       
@@ -206,8 +237,8 @@
                     background-color:rgb(61, 63, 58);
                     color:white;
                     scrollbar-base-color:gold;
-                    font-family:sans-serif;
-                    padding:50px 50px;">
+                    font-family:serif;
+                    padding:40px 40px;">
                    
                    鹿盧劍是歷史上歷代秦王的佩劍，其意義深遠，象徵著王權。 還有其他的名字:「背手劍」、「秦王劍」、「宇宙鋒」。劍長四尺多，鋒利無比。 荊軻刺秦，當年斬斷荊軻大腿的劍也是 「宇宙鋒」。此外，大臣匡洪跟隨秦始皇征戰多年，公職卓 越，秦始皇便把這劍送給了他，又引出了「劍斬趙高」的故事。
         </div>

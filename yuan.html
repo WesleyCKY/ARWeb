@@ -21,14 +21,45 @@
 
           // dynamic background image, fetch from map folder
           let backgroundImg ="url(" + base + "png/map/"+ backDrop +"/"+ backDrop+ "/"+ backDrop +"_02.png)";
-          console.log(backgroundImg);
+          // console.log(backgroundImg);
           document.getElementById('mv').style.backgroundImage=backgroundImg;
 
-          // fetch .txt file to the id="detail" div 
+          var textTemp = '';
+           // fetch .txt file to the id="detail" div 
           fetch(base+ "txt/" + name + ".txt")
             .then(response => response.text())
-            .then(text => document.getElementById("detail").innerHTML = text)
-            // .then()
+          // .then(text => document.getElementById("detail").innerHTML = text) 
+            .then((text) => {
+              var i;
+              var NumOfChinese = 0;
+              var lastChar = 0;
+              // console.log("Text length", text.length);
+
+              //get where is the end of chinese word
+              for (i = 0; i < text.length-1; i++) { 
+                if (text[i].match("[\u4E00-\u9FA5]+")) {
+                  NumOfChinese += 1;
+                }
+              }
+              // console.log("Num of Chinese Char: ",NumOfChinese);
+
+              // loop through all the words and remove all the space
+              for (var j = 0; j < text.length; j++) {
+                  // In range of Chinese words
+                  if (j < NumOfChinese && text[j].match(' '||'/s'||'/S')) {
+                      console.log("eliminated word:",text[j]);
+                      // textTemp += 'X';
+                      console.log(j);
+                      continue;
+                  }
+                  
+                  // console.log("Eng zone");
+                  textTemp += text[j];
+              }
+              // console.log(textTemp);
+              document.getElementById("detail").innerHTML = textTemp;
+            })
+            
           element.classList.add("selected");
         };
       
@@ -206,8 +237,8 @@
                     background-color:rgb(61, 63, 58);
                     color:white;
                     scrollbar-base-color:gold;
-                    font-family:sans-serif;
-                    padding:50px 50px;">
+                    font-family:serif;
+                    padding:40px 40px;">
                    
                    劉福通（1321-1366）漢族，元末民變領袖。劉福通雖家境富 裕，但爲人正直仗義且見識過人，因此眼見腐敗的朝廷，便決 定與韓山童籌備起義之事。其後，韓山童在盟誓期間被捕，劉 福通倖幸逃脫，同年捲土重來，再次在潁州起義，在民眾響應 下，成功起義，並扶持韓山童之子韓林兒建立大宋政權，國號 大宋（韓宋）。後來北上時因戰術失誤，導致被元軍圍困，幸 好得以逃脫，南奔安豐。不久後，劉福通再次北上，擊敗元 軍。隨後北伐分三路大軍，因三路互相難以支援，相繼失利。 最終劉福通被敵人襲擊，在安豐犧牲。 LIU Fu-tong (1321 to 1366 CE,) was a leader of peasant rebellions in the late Yuan Dynasty. As the government was corrupt, he decided to prepare for the uprising with HAN Shan-tong . With the support from the public, he helped HAN Lin’er, the son of Han Shan-tong, establish the Great Dynasty or Han Song. At a later war, due to tactical mistakes, he was besieged by the Yuan’s army. After getting through the difficult situation, he went north again and defeated the Yuan’s army. However, he was under attack and died in Anfung eventually.
         </div>

@@ -21,14 +21,45 @@
 
           // dynamic background image, fetch from map folder
           let backgroundImg ="url(" + base + "png/map/"+ backDrop +"/"+ backDrop+ "/"+ backDrop +"_02.png)";
-          console.log(backgroundImg);
+          // console.log(backgroundImg);
           document.getElementById('mv').style.backgroundImage=backgroundImg;
 
+          var textTemp = '';
           // fetch .txt file to the id="detail" div 
           fetch(base+ "txt/" + name + ".txt")
             .then(response => response.text())
-            .then(text => document.getElementById("detail").innerHTML = text)
-            // .then()
+          // .then(text => document.getElementById("detail").innerHTML = text) 
+            .then((text) => {
+              var i;
+              var NumOfChinese = 0;
+              var lastChar = 0;
+              // console.log("Text length", text.length);
+
+              //get where is the end of chinese word
+              for (i = 0; i < text.length-1; i++) { 
+                if (text[i].match("[\u4E00-\u9FA5]+")) {
+                  NumOfChinese += 1;
+                }
+              }
+              // console.log("Num of Chinese Char: ",NumOfChinese);
+
+              // loop through all the words and remove all the space
+              for (var j = 0; j < text.length; j++) {
+                  // In range of Chinese words
+                  if (j < NumOfChinese && text[j].match(' '||'/s'||'/S')) {
+                      // console.log("eliminated word:",text[j]);
+                      // textTemp += 'X';
+                      // console.log(j);
+                      continue;
+                  }
+                  
+                  // console.log("Eng zone");
+                  textTemp += text[j];
+              }
+              // console.log(textTemp);
+              document.getElementById("detail").innerHTML = textTemp;
+            })
+            
           element.classList.add("selected");
         };
       
@@ -206,11 +237,10 @@
                     background-color:rgb(61, 63, 58);
                     color:white;
                     scrollbar-base-color:gold;
-                    font-family:sans-serif;
-                    padding:50px 50px;">
+                    font-family:serif;
+                    padding:40px 40px;">
                    
-                   
-朱溫（852 年 12 月 9 日—912 年 7 月 18 日），五代時期梁朝第 一位皇帝 , 別名朱全忠，漢族。朱溫年幼喪父，年少時游手好 閒、不務正業，但後來加入黃巢軍，並在叛變降唐後，被授以 宣武節度使。其後，在平定黃巢後，朱溫被封為東平王。在黃 巢覆亡後，各藩鎮擁兵自重，朱溫是數個强大勢力中的其中一 個。不久後朱溫指使朱友恭等人殺昭宗, 另立唐哀帝，更盡殺宰 相。在除去阻力後，於開平元年，廢唐哀帝，自行稱帝，改名 為晃，國號為「梁」（後梁），自此中國進入五代十國的紛亂 時期。 ZHU Wen (852 to 912 CE), also named Zhu Quan-zhong, was the first emperor of the Liang Dynasty in the Five Dynasties period. He joined the rebel army of HUANG Chao against the state of Tang when he was young. However, he surrendered to the Tang’s army and was appointed to be a regional commander of Tang’s army in reward. After the fall of HUANG Chao, Zhu became one of several powerful military forces. Later, he instructed ZHU You-gong and the others to kill the Emperor Zhaozong. He passed the throne to Emperor Ai and eliminated all the Tang’s prime ministers. In the first year of the Kaiping era, he declared himself the Emperor and founded the Liang Dynasty or Later Liang.
+朱溫（852年12月9日—912年7月18日），五代時期梁朝第一位皇帝 , 別名朱全忠，漢族。朱溫年幼喪父，年少時游手好 閒、不務正業，但後來加入黃巢軍，並在叛變降唐後，被授以宣武節度使。其後，在平定黃巢後，朱溫被封為東平王。在黃巢覆亡後，各藩鎮擁兵自重，朱溫是數個强大勢力中的其中一 個。不久後朱溫指使朱友恭等人殺昭宗,另立唐哀帝，更盡殺宰相。在除去阻力後，於開平元年，廢唐哀帝，自行稱帝，改名為晃，國號為「梁」（後梁），自此中國進入五代十國的紛亂 時期。 ZHU Wen (852 to 912 CE), also named Zhu Quan-zhong, was the first emperor of the Liang Dynasty in the Five Dynasties period. He joined the rebel army of HUANG Chao against the state of Tang when he was young. However, he surrendered to the Tang’s army and was appointed to be a regional commander of Tang’s army in reward. After the fall of HUANG Chao, Zhu became one of several powerful military forces. Later, he instructed ZHU You-gong and the others to kill the Emperor Zhaozong. He passed the throne to Emperor Ai and eliminated all the Tang’s prime ministers. In the first year of the Kaiping era, he declared himself the Emperor and founded the Liang Dynasty or Later Liang.
         </div>
   <button slot="ar-button" id="ar-button">
     View in AR mode

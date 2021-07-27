@@ -21,14 +21,45 @@
 
           // dynamic background image, fetch from map folder
           let backgroundImg ="url(" + base + "png/map/"+ backDrop +"/"+ backDrop+ "/"+ backDrop +"_02.png)";
-          console.log(backgroundImg);
+          // console.log(backgroundImg);
           document.getElementById('mv').style.backgroundImage=backgroundImg;
 
-          // fetch .txt file to the id="detail" div 
+          var textTemp = '';
+           // fetch .txt file to the id="detail" div 
           fetch(base+ "txt/" + name + ".txt")
             .then(response => response.text())
-            .then(text => document.getElementById("detail").innerHTML = text)
-            // .then()
+          // .then(text => document.getElementById("detail").innerHTML = text) 
+            .then((text) => {
+              var i;
+              var NumOfChinese = 0;
+              var lastChar = 0;
+              // console.log("Text length", text.length);
+
+              //get where is the end of chinese word
+              for (i = 0; i < text.length-1; i++) { 
+                if (text[i].match("[\u4E00-\u9FA5]+")) {
+                  NumOfChinese += 1;
+                }
+              }
+              // console.log("Num of Chinese Char: ",NumOfChinese);
+
+              // loop through all the words and remove all the space
+              for (var j = 0; j < text.length; j++) {
+                  // In range of Chinese words
+                  if (j < NumOfChinese && text[j].match(' '||'/s'||'/S')) {
+                      // console.log("eliminated word:",text[j]);
+                      // textTemp += 'X';
+                      // console.log(j);
+                      continue;
+                  }
+                  
+                  // console.log("Eng zone");
+                  textTemp += text[j];
+              }
+              // console.log(textTemp);
+              document.getElementById("detail").innerHTML = textTemp;
+            })
+            
           element.classList.add("selected");
         };
       
@@ -206,8 +237,8 @@
                     background-color:rgb(61, 63, 58);
                     color:white;
                     scrollbar-base-color:gold;
-                    font-family:sans-serif;
-                    padding:50px 50px;">
+                    font-family:serif;
+                    padding:40px 40px;">
                    
                  石守信（928 年－984 年）字守信，開封浚儀人。北宋開國將領。在五代後漢時期屢立戰功，這令他成為殿前司禁軍主力的指揮官。他與趙匡胤雙方關係密切，因此石守信指揮的殿前司禁軍願意配合趙匡胤，令趙匡胤的兵變部隊在「黃袍加身」後仍以順利進城，建立宋朝。石守信後來成爲了開國元勛，亦爲北宋初期的重要將領。後來，石守信因「杯酒釋兵權」一事而辭去將領一職，任之為天平軍節度使。石守信為明哲保身而不 問政治，晚年則專事聚斂，積財巨萬。 SHI Shou-xin (928 to 984 CE) was a general who helped establish the Northern Song Dynasty. He was also the founding father and an important general of the North Song. He had a close relationship with ZHAO Kuang-yi. After the state took back and centralised all the military power, Shi resigned from his general position and withdrew from politics.
         </div>

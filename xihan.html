@@ -21,14 +21,45 @@
 
           // dynamic background image, fetch from map folder
           let backgroundImg ="url(" + base + "png/map/"+ backDrop +"/"+ backDrop+ "/"+ backDrop +"_02.png)";
-          console.log(backgroundImg);
+          // console.log(backgroundImg);
           document.getElementById('mv').style.backgroundImage=backgroundImg;
 
+          var textTemp = '';
           // fetch .txt file to the id="detail" div 
           fetch(base+ "txt/" + name + ".txt")
             .then(response => response.text())
-            .then(text => document.getElementById("detail").innerHTML = text)
-            // .then()
+          // .then(text => document.getElementById("detail").innerHTML = text) 
+            .then((text) => {
+              var i;
+              var NumOfChinese = 0;
+              var lastChar = 0;
+              // console.log("Text length", text.length);
+
+              //get where is the end of chinese word
+              for (i = 0; i < text.length-1; i++) { 
+                if (text[i].match("[\u4E00-\u9FA5]+")) {
+                  NumOfChinese += 1;
+                }
+              }
+              // console.log("Num of Chinese Char: ",NumOfChinese);
+
+              // loop through all the words and remove all the space
+              for (var j = 0; j < text.length; j++) {
+                  // In range of Chinese words
+                  if (j < NumOfChinese && text[j].match(' '||'/s'||'/S')) {
+                      // console.log("eliminated word:",text[j]);
+                      // textTemp += 'X';
+                      // console.log(j);
+                      continue;
+                  }
+                  
+                  // console.log("Eng zone");
+                  textTemp += text[j];
+              }
+              // console.log(textTemp);
+              document.getElementById("detail").innerHTML = textTemp;
+            })
+            
           element.classList.add("selected");
         };
       
@@ -206,8 +237,8 @@
                     background-color:rgb(61, 63, 58);
                     color:white;
                     scrollbar-base-color:gold;
-                    font-family:sans-serif;
-                    padding:50px 50px;">
+                    font-family:serif;
+                    padding:40px 40px;">
                    
                    劉邦（公元前 256 年十一月二十四-前 195 年四月二十五），漢太祖高皇帝，沛豐邑中陽里人。出身農家的劉邦在陳勝起事後不久，便集合三千子弟響應起義，秦王子嬰投降，秦朝滅亡。 後來在楚漢戰爭中，劉邦屢敗，但他懂得充分發揮部下的才 能，最終反敗為勝。劉邦稱帝，定都長安，史稱「西漢」。登 基後一面消滅韓信，彭越等異姓諸侯王，一面採用休養生息的 寬鬆政策治理天下，恢復殘破的社會經濟，穩定封建統治秩 序。劉邦更對匈奴採取和親政策，緩和了雙方的關係。 LIU Bang (256 to 195 BCE) was also known as the Emperor Gaozu of Han. Shortly after the Uprising of CHEN Sheng and WU Guang, he assembled 3,000 followers to initiate another rebellion against the Qin empire. In the following Chu-Han Contention, Liu kept losing to XIANG Yu at the beginning, but he made good use of his soldiers‘ talents and turned the tables on XIANG Yu at the end. Liu became the emperor and set the capital in Chang’an. After the establishment of the “Western Han”, he eliminated all the vassal kings who had no relation to the imperial clan. At the same time, he ruled the state with lenient policies and stabilised the feudal system. Liu also adopted the policy of heqin towards the Xiongnu.
         </div>
