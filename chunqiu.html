@@ -9,19 +9,13 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
 
-     <script src="app.js"></script>
-     <link rel="stylesheet" href="./style.css">
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-  <script src="app.js" type="text/javascript"></script>
-<model-viewer id="mv" src="assets/glb/bucoin.glb" 
-        ar ar-modes="webxr scene-viewer quick-look"
-        pan-y pan-x
-        Max-field-of-view="50deg"
-        Min-field-of-view="50deg"
-        camera-orbit="180deg 1.5m"
-        camera-controls="" background-color="#455A64" alt="A 3D model carousel">
+    <script src="app.js" type="text/javascript"></script>
+    <model-viewer id="mv" src="assets/glb/bucoin.glb" ar ar-modes="webxr scene-viewer quick-look" pan-y pan-x Max-field-of-view="50deg" Min-field-of-view="50deg" camera-orbit="180deg 1.5m" camera-controls="" background-color="#455A64" alt="A 3D model carousel">
         <div id="detail" style="height:69vh;
                     width:23vw;
                     overflow:auto;
@@ -33,22 +27,25 @@
                     scrollbar-base-color:gold;
                     font-family:serif;
                     padding:40px 40px;">
-                   布幣是中國古代貨幣，因形狀似鏟，又稱鏟布，在中國春秋戰國時曾是民間交易的媒介。「布」本有麻布之意，而麻布是交易媒介之一，在銅幣出現後，人們因受長期習慣的影響，仍稱銅錢為布。布幣是從青銅農具鎛演變而來的，布幣形狀劃分為空首布，平首布兩大類。最初的布幣，保留著其作為工具的模樣，留有裝柄的的銎，原始而厚重，故稱為空首布；後來逐漸減輕，變薄，變小，幣身完全成為片狀，稱為平首布，平首布上面通常鑄有地名或紀重的文字。後來王莽的新朝亦曾造布幣。 Spade money was an ancient Chinese currency that was derived from the bronze agricultural tools and commonly circulated during the Spring and Autumn period. The earliest spade money retained the element of the hollowed handle of agricultural tools. It was thick and heavy. Later, it was redesigned and gradually became lightened, thinned and smaller.
+            布幣是中國古代貨幣，因形狀似鏟，又稱鏟布，在中國春秋戰國時曾是民間交易的媒介。「布」本有麻布之意，而麻布是交易媒介之一，在銅幣出現後，人們因受長期習慣的影響，仍稱銅錢為布。布幣是從青銅農具鎛演變而來的，布幣形狀劃分為空首布，平首布兩大類。最初的布幣，保留著其作為工具的模樣，留有裝柄的的銎，原始而厚重，故稱為空首布；後來逐漸減輕，變薄，變小，幣身完全成為片狀，稱為平首布，平首布上面通常鑄有地名或紀重的文字。後來王莽的新朝亦曾造布幣。 Spade money was an ancient Chinese
+            currency that was derived from the bronze agricultural tools and commonly circulated during the Spring and Autumn period. The earliest spade money retained the element of the hollowed handle of agricultural tools. It was thick and heavy. Later,
+            it was redesigned and gradually became lightened, thinned and smaller.
         </div>
-  <button slot="ar-button" id="ar-button">
+        <button slot="ar-button" id="ar-button">
     View in AR mode
   </button>
-  <!-- Sliding button list -->
-  <div class="slider">
-    <div class="slides">
-      <!-- App 1 -->
-      <button class="slide selected" onclick="switchSrc(this, 'bucoin', 'chunqiu');" style="background-image: url('assets/png/bucoin.png');"> 
+        <!-- Sliding button list -->
+        <div class="slider">
+            <div class="slides">
+                <!-- App 1 -->
+                <button class="slide selected" onclick="switchSrc(this, 'bucoin', 'chunqiu');" style="background-image: url('assets/png/bucoin.png');"> 
         <svg viewBox="0 0 450 50">
           <text y="50">1.布幣</text>
         </svg>
     </button>
-    </div>
-  </div>
-</model-viewer>
+            </div>
+        </div>
+    </model-viewer>
 </body>
+
 </html>

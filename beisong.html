@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <!-- auto refresh, for dev purpose -->
@@ -8,23 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- import model-viewer into this file -->
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    
-  
+
+
     <title>北宋</title>
 
     <link rel="stylesheet" href="./style.css">
 </head>
 <!-- Model viwer template -->
+
 <body>
-  <script src="app.js" type="text/javascript"></script>
-  <!-- init model, change while switchSrc() is called -->
-    <model-viewer id="mv" src="assets/glb/shishouxin.glb" 
-        ar ar-modes="webxr scene-viewer quick-look"
-        pan-y pan-x
-        Max-field-of-view="50deg"
-        Min-field-of-view="50deg"
-        camera-orbit="180deg 1.5m"
-        camera-controls="" background-color="#455A64" alt="A 3D model carousel">
+    <script src="app.js" type="text/javascript"></script>
+    <!-- init model, change while switchSrc() is called -->
+    <model-viewer id="mv" src="assets/glb/shishouxin.glb" ar ar-modes="webxr scene-viewer quick-look" pan-y pan-x Max-field-of-view="50deg" Min-field-of-view="50deg" camera-orbit="180deg 1.5m" camera-controls="" background-color="#455A64" alt="A 3D model carousel">
         <div id="detail" style="height:69vh;
                     width:23vw;
                     overflow:auto;
@@ -36,27 +32,30 @@
                     scrollbar-base-color:gold;
                     font-family:serif;
                     padding:40px 40px;">
-                   石守信（928年－984年）字守信，開封浚儀人。北宋開國將領。在五代後漢時期屢立戰功，這令他成為殿前司禁軍主力的指揮官。他與趙匡胤雙方關係密切，因此石守信指揮的殿前司禁軍願意配合趙匡胤，令趙匡胤的兵變部隊在「黃袍加身」後仍以順利進城，建立宋朝。石守信後來成爲了開國元勛，亦爲北宋初期的重要將領。後來，石守信因「杯酒釋兵權」一事而辭去將領一職，任之為天平軍節度使。石守信為明哲保身而不 問政治，晚年則專事聚斂，積財巨萬。 SHI Shou-xin (928 to 984 CE) was a general who helped establish the Northern Song Dynasty. He was also the founding father and an important general of the North Song. He had a close relationship with ZHAO Kuang-yi. After the state took back and centralised all the military power, Shi resigned from his general position and withdrew from politics.
+            石守信（928年－984年）字守信，開封浚儀人。北宋開國將領。在五代後漢時期屢立戰功，這令他成為殿前司禁軍主力的指揮官。他與趙匡胤雙方關係密切，因此石守信指揮的殿前司禁軍願意配合趙匡胤，令趙匡胤的兵變部隊在「黃袍加身」後仍以順利進城，建立宋朝。石守信後來成爲了開國元勛，亦爲北宋初期的重要將領。後來，石守信因「杯酒釋兵權」一事而辭去將領一職，任之為天平軍節度使。石守信為明哲保身而不 問政治，晚年則專事聚斂，積財巨萬。 SHI Shou-xin (928 to 984 CE) was a general
+            who helped establish the Northern Song Dynasty. He was also the founding father and an important general of the North Song. He had a close relationship with ZHAO Kuang-yi. After the state took back and centralised all the military power, Shi
+            resigned from his general position and withdrew from politics.
         </div>
-  <button slot="ar-button" id="ar-button">
+        <button slot="ar-button" id="ar-button">
     View in AR mode
   </button>
-  <!-- Sliding button list -->
-  <div class="slider">
-    <div class="slides">
-      <!-- App 1 -->
-      <button class="slide" onclick="switchSrc(this, 'shishouxin', 'beisong')" style="background-image: url('assets/png/shishouxin.png');">
+        <!-- Sliding button list -->
+        <div class="slider">
+            <div class="slides">
+                <!-- App 1 -->
+                <button class="slide" onclick="switchSrc(this, 'shishouxin', 'beisong')" style="background-image: url('assets/png/shishouxin.png');">
         <svg viewBox="0 0 450 50">
           <text y="50">22.石守信</text>
         </svg>
       </button>
-      <button class="slide" onclick="switchSrc(this, 'zhaokuangyin', 'beisong')" style="background-image: url('assets/png/zhaokuangyin.png');">
+                <button class="slide" onclick="switchSrc(this, 'zhaokuangyin', 'beisong')" style="background-image: url('assets/png/zhaokuangyin.png');">
         <svg viewBox="0 0 450 50">
           <text y="50">23.趙匡胤</text>
         </svg>
       </button>
-    </div>
-  </div>
-</model-viewer>
+            </div>
+        </div>
+    </model-viewer>
 </body>
+
 </html>

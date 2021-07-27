@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <!-- auto refresh, for dev purpose -->
@@ -10,19 +11,14 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <title>戰國</title>
 
-  <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <!-- Model viwer template -->
+
 <body>
-  <script src="app.js" type="text/javascript"></script>
-  <!-- init model, change while switchSrc() is called -->
-    <model-viewer id="mv" src="assets/glb/daobi.glb" 
-        ar ar-modes="webxr scene-viewer quick-look"
-        pan-y pan-x
-        Max-field-of-view="50deg"
-        Min-field-of-view="50deg"
-        camera-orbit="180deg 1.5m"
-        camera-controls="" background-color="#455A64" alt="A 3D model carousel">
+    <script src="app.js" type="text/javascript"></script>
+    <!-- init model, change while switchSrc() is called -->
+    <model-viewer id="mv" src="assets/glb/daobi.glb" ar ar-modes="webxr scene-viewer quick-look" pan-y pan-x Max-field-of-view="50deg" Min-field-of-view="50deg" camera-orbit="180deg 1.5m" camera-controls="" background-color="#455A64" alt="A 3D model carousel">
         <div id="detail" style="height:69vh;
                     width:23vw;
                     overflow:auto;
@@ -34,37 +30,40 @@
                     scrollbar-base-color:gold;
                     font-family:serif;
                     padding:40px 40px;">
-                   刀幣是春秋戰國時期的青銅鑄幣之一，主要流通於春秋戰國時期的齊、燕、趙等國。其形由春秋時期的農具、手工工具和日常用具的刀演變而成。種類不一，幣面文字帶「齊」字的，有三字刀、四字刀等，不帶「齊」字的，有即墨刀、安陽刀等。刀幣有精確的設計和巧妙的構想，是古代勞動人民聰明才智的充分體現。刀幣最初是在齊國行用，隨著齊國疆土的擴大和與 鄰國交戰，齊國的刀幣流通範圍逐漸擴大到燕，趙地區。 Knife money was one of the bronze-cast coinages commonly circulated in the states of Qi, Yan and Zhao during the Spring and Autumn period. The wisdom of the Chinese people was manifested in its precise design and creative concept. Its circulation was mainly in the state of Qi, and gradually extended to the states of Yan and Zhao.
+            刀幣是春秋戰國時期的青銅鑄幣之一，主要流通於春秋戰國時期的齊、燕、趙等國。其形由春秋時期的農具、手工工具和日常用具的刀演變而成。種類不一，幣面文字帶「齊」字的，有三字刀、四字刀等，不帶「齊」字的，有即墨刀、安陽刀等。刀幣有精確的設計和巧妙的構想，是古代勞動人民聰明才智的充分體現。刀幣最初是在齊國行用，隨著齊國疆土的擴大和與 鄰國交戰，齊國的刀幣流通範圍逐漸擴大到燕，趙地區。 Knife money was one of the bronze-cast coinages commonly circulated
+            in the states of Qi, Yan and Zhao during the Spring and Autumn period. The wisdom of the Chinese people was manifested in its precise design and creative concept. Its circulation was mainly in the state of Qi, and gradually extended to the
+            states of Yan and Zhao.
         </div>
-  <button slot="ar-button" id="ar-button">
+        <button slot="ar-button" id="ar-button">
     View in AR mode
   </button>
-  <!-- Sliding button list -->
-  <div class="slider">
-    <div class="slides">
-      <!-- App 1 -->
-    <button class="slide" onclick="switchSrc(this, 'daobi', 'zhanguo')" style="background-image: url('assets/png/daobi.png');">
+        <!-- Sliding button list -->
+        <div class="slider">
+            <div class="slides">
+                <!-- App 1 -->
+                <button class="slide" onclick="switchSrc(this, 'daobi', 'zhanguo')" style="background-image: url('assets/png/daobi.png');">
         <svg viewBox="0 0 450 50">
           <text y="50">2.刀幣</text>
         </svg>
       </button>
-      <button class="slide" onclick="switchSrc(this, 'banliangqian', 'zhanguo')" style="background-image: url('assets/png/banliangqian.png');">
+                <button class="slide" onclick="switchSrc(this, 'banliangqian', 'zhanguo')" style="background-image: url('assets/png/banliangqian.png');">
         <svg viewBox="0 0 450 50">
           <text y="50">3.半兩錢</text>
         </svg>
       </button>
-      <button class="slide" onclick="switchSrc(this, 'huanqian', 'zhanguo')" style="background-image: url('assets/png/huanqian.png');">
+                <button class="slide" onclick="switchSrc(this, 'huanqian', 'zhanguo')" style="background-image: url('assets/png/huanqian.png');">
         <svg viewBox="0 0 450 50">
           <text y="50">4.圜錢</text>
         </svg>
       </button>
-      <button class="slide" onclick="switchSrc(this, 'yibiqian', 'zhanguo')" style="background-image: url('assets/png/yibiqian.png');">
+                <button class="slide" onclick="switchSrc(this, 'yibiqian', 'zhanguo')" style="background-image: url('assets/png/yibiqian.png');">
         <svg viewBox="0 0 450 50">
           <text y="50">5.蟻鼻錢</text>
         </svg>
       </button>
-    </div>
-  </div>
-</model-viewer>
+            </div>
+        </div>
+    </model-viewer>
 </body>
+
 </html>

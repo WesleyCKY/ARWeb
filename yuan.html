@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <!-- auto refresh, for dev purpose -->
@@ -9,19 +10,14 @@
     <!-- import model-viewer into this file -->
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <title>元朝</title>
-<link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <!-- Model viwer template -->
+
 <body>
-  <script src="app.js" type="text/javascript"></script>
-  <!-- init model, change while switchSrc() is called -->
-    <model-viewer id="mv" src="assets/glb/liufutong.glb" 
-        ar ar-modes="webxr scene-viewer quick-look"
-        pan-y pan-x
-        Max-field-of-view="50deg"
-        Min-field-of-view="50deg"
-        camera-orbit="180deg 1.5m"
-        camera-controls="" background-color="#455A64" alt="A 3D model carousel">
+    <script src="app.js" type="text/javascript"></script>
+    <!-- init model, change while switchSrc() is called -->
+    <model-viewer id="mv" src="assets/glb/liufutong.glb" ar ar-modes="webxr scene-viewer quick-look" pan-y pan-x Max-field-of-view="50deg" Min-field-of-view="50deg" camera-orbit="180deg 1.5m" camera-controls="" background-color="#455A64" alt="A 3D model carousel">
         <div id="detail" style="height:69vh;
                     width:23vw;
                     overflow:auto;
@@ -33,37 +29,40 @@
                     scrollbar-base-color:gold;
                     font-family:serif;
                     padding:40px 40px;">
-                   劉福通（1321-1366）漢族，元末民變領袖。劉福通雖家境富裕，但爲人正直仗義且見識過人，因此眼見腐敗的朝廷，便決定與韓山童籌備起義之事。其後，韓山童在盟誓期間被捕，劉福通倖幸逃脫，同年捲土重來，再次在潁州起義，在民眾響應下，成功起義，並扶持韓山童之子韓林兒建立大宋政權，國號大宋（韓宋）。後來北上時因戰術失誤，導致被元軍圍困，幸好得以逃脫，南奔安豐。不久後，劉福通再次北上，擊敗元軍。隨後北伐分三路大軍，因三路互相難以支援，相繼失利。 最終劉福通被敵人襲擊，在安豐犧牲。 LIU Fu-tong (1321 to 1366 CE,) was a leader of peasant rebellions in the late Yuan Dynasty. As the government was corrupt, he decided to prepare for the uprising with HAN Shan-tong . With the support from the public, he helped HAN Lin’er, the son of Han Shan-tong, establish the Great Dynasty or Han Song. At a later war, due to tactical mistakes, he was besieged by the Yuan’s army. After getting through the difficult situation, he went north again and defeated the Yuan’s army. However, he was under attack and died in Anfung eventually.
+            劉福通（1321-1366）漢族，元末民變領袖。劉福通雖家境富裕，但爲人正直仗義且見識過人，因此眼見腐敗的朝廷，便決定與韓山童籌備起義之事。其後，韓山童在盟誓期間被捕，劉福通倖幸逃脫，同年捲土重來，再次在潁州起義，在民眾響應下，成功起義，並扶持韓山童之子韓林兒建立大宋政權，國號大宋（韓宋）。後來北上時因戰術失誤，導致被元軍圍困，幸好得以逃脫，南奔安豐。不久後，劉福通再次北上，擊敗元軍。隨後北伐分三路大軍，因三路互相難以支援，相繼失利。 最終劉福通被敵人襲擊，在安豐犧牲。 LIU Fu-tong (1321
+            to 1366 CE,) was a leader of peasant rebellions in the late Yuan Dynasty. As the government was corrupt, he decided to prepare for the uprising with HAN Shan-tong . With the support from the public, he helped HAN Lin’er, the son of Han Shan-tong,
+            establish the Great Dynasty or Han Song. At a later war, due to tactical mistakes, he was besieged by the Yuan’s army. After getting through the difficult situation, he went north again and defeated the Yuan’s army. However, he was under attack
+            and died in Anfung eventually.
         </div>
-  <button slot="ar-button" id="ar-button">
+        <button slot="ar-button" id="ar-button">
     View in AR mode
   </button>
-  <!-- Sliding button list -->
-  <div class="slider">
-    <div class="slides">
-     
-      <button class="slide" onclick="switchSrc(this, 'liufutong', 'yuan')" style="background-image: url('assets/png/liufutong.png');">
+        <!-- Sliding button list -->
+        <div class="slider">
+            <div class="slides">
+                <button class="slide" onclick="switchSrc(this, 'liufutong', 'yuan')" style="background-image: url('assets/png/liufutong.png');">
         <svg viewBox="0 0 450 50">
           <text y="50">25.劉福通</text>
         </svg>
       </button>
-      <button class="slide" onclick="switchSrc(this, 'hubilie', 'yuan')" style="background-image: url('assets/png/hubilie.png');">
+                <button class="slide" onclick="switchSrc(this, 'hubilie', 'yuan')" style="background-image: url('assets/png/hubilie.png');">
         <svg viewBox="0 0 450 50">
           <text y="50">26.忽必烈</text>
         </svg>
       </button>
-      <button class="slide" onclick="switchSrc(this, 'tiemuzhen', 'yuan')" style="background-image: url('assets/png/tiemuzhen.png');">
+                <button class="slide" onclick="switchSrc(this, 'tiemuzhen', 'yuan')" style="background-image: url('assets/png/tiemuzhen.png');">
         <svg viewBox="0 0 450 50">
           <text y="50">27.鐵木真</text>
         </svg>
       </button>
-      <button class="slide" onclick="switchSrc(this, 'hanshantong', 'yuan')" style="background-image: url('assets/png/hanshantong.png');">
+                <button class="slide" onclick="switchSrc(this, 'hanshantong', 'yuan')" style="background-image: url('assets/png/hanshantong.png');">
         <svg viewBox="0 0 450 50">
           <text y="50">28.韓山童</text>
         </svg>
       </button>
-    </div>
-  </div>
-</model-viewer>
+            </div>
+        </div>
+    </model-viewer>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <!-- auto refresh, for dev purpose -->
@@ -10,18 +11,13 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <title>明朝</title>
 
-     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <!-- Model viwer template -->
+
 <body>
     <script src="app.js" type="text/javascript"></script>
-    <model-viewer id="mv" src="assets/glb/zhuyuanzhang.glb" 
-        ar ar-modes="webxr scene-viewer quick-look"
-        pan-y pan-x
-        Max-field-of-view="50deg"
-        Min-field-of-view="50deg"
-        camera-orbit="180deg 1.5m"
-        camera-controls="" background-color="#455A64" alt="A 3D model carousel">
+    <model-viewer id="mv" src="assets/glb/zhuyuanzhang.glb" ar ar-modes="webxr scene-viewer quick-look" pan-y pan-x Max-field-of-view="50deg" Min-field-of-view="50deg" camera-orbit="180deg 1.5m" camera-controls="" background-color="#455A64" alt="A 3D model carousel">
         <div id="detail" style="height:69vh;
                     width:23vw;
                     overflow:auto;
@@ -33,31 +29,35 @@
                     scrollbar-base-color:gold;
                     font-family:serif;
                     padding:40px 40px;">
-                   朱元璋（1328年10月21日－1398年6月24日）字國瑞，漢族，明朝開國皇帝，本名「朱重八」。出身寒微,先為牧羊童,又曾在皇覺寺做和尚討飯,其後投身反元,經十餘年的奮鬥終能定鼎天下,建立明朝。朱元璋因見證元末即治腐敗，令他痛恨貪官污即,嚴懲貪污;關心民生。他亦是在出身寒微下稱帝，加上他是經過多年的奮鬥才登基，因此性格猜疑防範。除子孫外,不拘何 人,一律猜忌和不能容忍,更欲專制統治。唯有厲行集權政策,事 必躬親,由皇帝總理國政。 ZHU Yuan-zhang (1328 to 1398 CE), whose birth name was Zhu Zhong-ba, was the founding emperor of the Ming Dynasty. He was born in a poor family and begged for food as a monk. He devoted himself to a rebel army against the Yuan Dynasty until the establishment of the Ming Dynasty. Due to his poor background, he was a suspicious person and overprotective to himself. Apart from his children or grandchildren, no matter who they were, Zhu always questioned and was intolerable to them. He also centralised and managed all the state affairs himself.
+            朱元璋（1328年10月21日－1398年6月24日）字國瑞，漢族，明朝開國皇帝，本名「朱重八」。出身寒微,先為牧羊童,又曾在皇覺寺做和尚討飯,其後投身反元,經十餘年的奮鬥終能定鼎天下,建立明朝。朱元璋因見證元末即治腐敗，令他痛恨貪官污即,嚴懲貪污;關心民生。他亦是在出身寒微下稱帝，加上他是經過多年的奮鬥才登基，因此性格猜疑防範。除子孫外,不拘何 人,一律猜忌和不能容忍,更欲專制統治。唯有厲行集權政策,事 必躬親,由皇帝總理國政。 ZHU Yuan-zhang (1328 to 1398 CE),
+            whose birth name was Zhu Zhong-ba, was the founding emperor of the Ming Dynasty. He was born in a poor family and begged for food as a monk. He devoted himself to a rebel army against the Yuan Dynasty until the establishment of the Ming Dynasty.
+            Due to his poor background, he was a suspicious person and overprotective to himself. Apart from his children or grandchildren, no matter who they were, Zhu always questioned and was intolerable to them. He also centralised and managed all
+            the state affairs himself.
         </div>
-  <button slot="ar-button" id="ar-button">
+        <button slot="ar-button" id="ar-button">
     View in AR mode
   </button>
-  <!-- Sliding button list -->
-  <div class="slider">
-    <div class="slides">
-      <button class="slide" onclick="switchSrc(this, 'zhuyuanzhang', 'ming')" style="background-image: url('assets/png/zhuyuanzhang.png');">
+        <!-- Sliding button list -->
+        <div class="slider">
+            <div class="slides">
+                <button class="slide" onclick="switchSrc(this, 'zhuyuanzhang', 'ming')" style="background-image: url('assets/png/zhuyuanzhang.png');">
         <svg viewBox="0 0 450 50">
           <text y="50">29.朱元璋</text>
         </svg>
       </button>
-      <button class="slide" onclick="switchSrc(this, 'lizicheng', 'ming')" style="background-image: url('assets/png/lizicheng.png');">
+                <button class="slide" onclick="switchSrc(this, 'lizicheng', 'ming')" style="background-image: url('assets/png/lizicheng.png');">
         <svg viewBox="0 0 450 50">
           <text y="50">30.李自成</text>
         </svg>
       </button>
-      <button class="slide" onclick="switchSrc(this, 'zhenghe', 'ming')" style="background-image: url('assets/png/zhenghe.png');">
+                <button class="slide" onclick="switchSrc(this, 'zhenghe', 'ming')" style="background-image: url('assets/png/zhenghe.png');">
         <svg viewBox="0 0 450 50">
           <text y="50">35.鄭和</text>
         </svg>
       </button>
-    </div>
-  </div>
-</model-viewer>
+            </div>
+        </div>
+    </model-viewer>
 </body>
+
 </html>
